@@ -85,4 +85,32 @@ class ReportsController extends AbstractController
 
         return $this->redirectToRoute('app_reports_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/search/reports', name: 'app_reports_search', methods: ['GET'])]
+    public function search(Request $request, EntityManagerInterface $entityManager)
+    {
+        $search = $request->query->get('search');
+        $reportsRepository = $entityManager
+
+        ->getRepository(Reports::class)
+        ->findAll();
+        if ($search) {
+            $reportsRepository = $entityManager->getRepository(Reports::class);
+
+     $searchResults = $reportsRepository->createQueryBuilder('p')
+    ->where('p.reportId = :query OR p.reportSubject LIKE :query OR p.incidentLocation LIKE :query')
+    ->setParameter('query', '%'.$search.'%')
+    ->getQuery()
+    ->getResult();
+        }
+        else{
+            $searchResults = $entityManager
+            ->getRepository(Reports::class)
+            ->findAll();
+        }
+
+           return  $this->json($searchResults);
+
+    }
 }

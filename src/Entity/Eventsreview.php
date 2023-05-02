@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Eventsreview
@@ -17,47 +15,62 @@ class Eventsreview
     /**
      * @var int
      *
-     * @ORM\Id
      * @ORM\Column(name="Review_id", type="integer", nullable=false)
+     * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $reviewId;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Event_name", type="string", length=30, nullable=false)
+     */
+    private $eventName;
 
     /**
      * @var string
-     *@Assert\NotBlank(message=" Please enter description")
-     * @ORM\Column(name="Review_txt", type="string", length=125, nullable=true)
+     *
+     * @ORM\Column(name="Review_txt", type="string", length=125, nullable=false)
      */
     private $reviewTxt;
 
     /**
-     * @var User
-     *@Assert\NotBlank(message=" Please login")
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="id_User", referencedColumnName="id_User")
-     * })
-     */
-    private $idUser;
-
-    /**
      * @var Evenement
-     * 
-     * @Assert\NotBlank(message=" Please select an event")
-     * @ORM\OneToOne(targetEntity="Evenement")
+     *
+     * @ORM\ManyToOne(targetEntity="Evenement")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Event_id", referencedColumnName="Event_id")
      * })
      */
     private $event;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_User", referencedColumnName="id_User")
+     * })
+     */
+    private $idUser;
+
     public function getReviewId(): ?int
     {
         return $this->reviewId;
     }
 
-   
+    public function getEventName(): ?string
+    {
+        return $this->eventName;
+    }
+
+    public function setEventName(string $eventName): self
+    {
+        $this->eventName = $eventName;
+
+        return $this;
+    }
 
     public function getReviewTxt(): ?string
     {
@@ -67,18 +80,6 @@ class Eventsreview
     public function setReviewTxt(string $reviewTxt): self
     {
         $this->reviewTxt = $reviewTxt;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?User
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
 
         return $this;
     }
@@ -95,9 +96,17 @@ class Eventsreview
         return $this;
     }
 
- 
-    
-   
+    public function getIdUser(): ?User
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(?User $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
 
 
 }

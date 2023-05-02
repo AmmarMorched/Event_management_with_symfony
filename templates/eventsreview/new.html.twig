@@ -1,14 +1,17 @@
 {% extends 'basefront.html.twig' %}
 
 {% block title %}New Eventsreview{% endblock %}
+{% block stylesheets %}
+    <style> .flash-notice { color: red } </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Eventsreview</h1>
+ 
+<div class="Container py-5">
 
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="container-fluid">
+      <div class="container ">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Review Add</h1>
@@ -42,6 +45,9 @@
               <div class="form-group">
                 
     {{ include('eventsreview/_form.html.twig') }}
+
+                <a href="{{ path('app_eventsreview_index') }}" class="btn btn-secondary float-right">Cancel</a>
+
      
 
 
@@ -54,7 +60,6 @@
           </div>
           <div class="row">
            <div class="col-12">
-            <a href="{{ path('app_eventsreview_index') }}" class="btn btn-secondary">Cancel</a>
             </div>
           <!-- /.card -->
         </div>

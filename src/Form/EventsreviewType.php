@@ -19,7 +19,7 @@ class EventsreviewType extends AbstractType
             //->add('eventName')
             ->add('reviewTxt')
             ->add('idUser')
-            ->add('event' )
+         //   ->add('event' )
         ;
     }
 

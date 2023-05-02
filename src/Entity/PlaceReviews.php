@@ -51,19 +51,7 @@ class PlaceReviews
     private $reviewDate;
 
     /**
-     * @var \Placetovisit
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Placetovisit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="place_Id", referencedColumnName="Place_Id")
-     * })
-     */
-    private $place;
-
-    /**
-     * @var \User
+     * @var User
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -73,6 +61,18 @@ class PlaceReviews
      * })
      */
     private $idUser;
+
+    /**
+     * @var Placetovisit
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Placetovisit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="place_Id", referencedColumnName="Place_Id")
+     * })
+     */
+    private $place;
 
     public function getReviewId(): ?int
     {
@@ -127,18 +127,6 @@ class PlaceReviews
         return $this;
     }
 
-    public function getPlace(): ?Placetovisit
-    {
-        return $this->place;
-    }
-
-    public function setPlace(?Placetovisit $place): self
-    {
-        $this->place = $place;
-
-        return $this;
-    }
-
     public function getIdUser(): ?User
     {
         return $this->idUser;
@@ -147,6 +135,18 @@ class PlaceReviews
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getPlace(): ?Placetovisit
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Placetovisit $place): self
+    {
+        $this->place = $place;
 
         return $this;
     }

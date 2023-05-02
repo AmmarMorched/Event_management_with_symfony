@@ -1,0 +1,157 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Reports List{% endblock %}
+
+{% block body %}
+    <div
+		class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Reports</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">Home</a>
+							</li>
+							<li class="breadcrumb-item active">DataTables</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-14">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Reports Table</h3>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+							
+
+
+    <table class="table" class="table table-bordered table-hover">
+<thead>
+            <tr>
+                <th>EventId</th>
+                <th>EventName</th>
+                <th>Cityname</th>
+                <th>EventDescription</th>
+                <th>Eventprice</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Eventposter</th>
+                <th>EventPic2</th>
+                <th>EventPic3</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.eventId }}</td>
+                <td>{{ evenement.eventName }}</td>
+                <td>{{ evenement.cityname }}</td>
+                <td>{{ evenement.eventDescription }}</td>
+                <td>{{ evenement.eventprice }}</td>
+                <td>{{ evenement.startDate ? evenement.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.endDate ? evenement.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.eventposter }}</td>
+                <td>{{ evenement.eventPic2 }}</td>
+                <td>{{ evenement.eventPic3 }}</td>
+                <td>
+                    <a href="{{ path('app_evenement_show', {'eventId': evenement.eventId}) }}">show</a>
+                    <a href="{{ path('app_evenement_edit', {'eventId': evenement.eventId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+	<div class="row">
+        <div class="col-12">
+          <a href="{{ path('app_reports_new') }}">create new</a>
+		  </div>
+    </div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+</div>
+
+    
+
+
+
+    <!-- jQuery -->
+<script src="{{ asset('../../plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('../../plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('../../plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{ asset('../../plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{ asset('../../plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('../../dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('../../dist/js/demo.js')}}"></script>
+<!-- Page specific script -->
+<script>
+	$(function () {
+$("#example1").DataTable({
+"responsive": true,
+"lengthChange": true,
+"autoWidth": true,
+"buttons": [
+"copy",
+"csv",
+"excel",
+"pdf",
+"print",
+"colvis"
+]
+}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+$('#example2').DataTable({
+"paging": false,
+"lengthChange": false,
+"searching": false,
+"ordering": true,
+"info": false,
+"autoWidth": false,
+"responsive": true
+}).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+});
+</script>
+
+
+
+{% endblock %}

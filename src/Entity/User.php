@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * User
@@ -61,6 +63,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="Password", type="string", length=255, nullable=false)
+
      */
     private $password;
 
@@ -350,10 +353,9 @@ class User
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getUsername();
     }
-
 
 }

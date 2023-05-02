@@ -15,23 +15,23 @@ class Ville
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     * @ORM\Column(name="nomVille", type="string", length=30, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $nom;
+    private $nomville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gouvernorat", type="string", length=30, nullable=false)
+     * @ORM\Column(name="gouvernant", type="string", length=30, nullable=false)
      */
-    private $gouvernorat;
+    private $gouvernant;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=60, nullable=false)
+     * @ORM\Column(name="description", type="string", length=30, nullable=false)
      */
     private $description;
 
@@ -49,19 +49,19 @@ class Ville
      */
     private $latitude;
 
-    public function getNom(): ?string
+    public function getNomville(): ?string
     {
-        return $this->nom;
+        return $this->nomville;
     }
 
-    public function getGouvernorat(): ?string
+    public function getGouvernant(): ?string
     {
-        return $this->gouvernorat;
+        return $this->gouvernant;
     }
 
-    public function setGouvernorat(string $gouvernorat): self
+    public function setGouvernant(string $gouvernant): self
     {
-        $this->gouvernorat = $gouvernorat;
+        $this->gouvernant = $gouvernant;
 
         return $this;
     }

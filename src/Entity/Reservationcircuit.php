@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservationcircuit
  *
- * @ORM\Table(name="reservationcircuit")
+ * @ORM\Table(name="reservationcircuit", indexes={@ORM\Index(name="sdferezr", columns={"nc"}), @ORM\Index(name="zerzerezr", columns={"id_client"})})
  * @ORM\Entity
  */
 class Reservationcircuit
@@ -23,82 +23,88 @@ class Reservationcircuit
     private $numRes;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_début", type="date", nullable=false)
+     */
+    private $dateDébut;
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="id_client", type="integer", nullable=false)
+     * @ORM\Column(name="nbr_place", type="integer", nullable=false)
+     */
+    private $nbrPlace;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_client", referencedColumnName="id_User")
+     * })
      */
     private $idClient;
 
     /**
-     * @var int
+     * @var \Circuit
      *
-     * @ORM\Column(name="nc", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Circuit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nc", referencedColumnName="nc")
+     * })
      */
     private $nc;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_debut_circuit", type="date", nullable=false)
-     */
-    private $dateDebutCircuit;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nbr_places", type="integer", nullable=false)
-     */
-    private $nbrPlaces;
 
     public function getNumRes(): ?int
     {
         return $this->numRes;
     }
 
-    public function getIdClient(): ?int
+    public function getDateDébut(): ?\DateTimeInterface
+    {
+        return $this->dateDébut;
+    }
+
+    public function setDateDébut(\DateTimeInterface $dateDébut): self
+    {
+        $this->dateDébut = $dateDébut;
+
+        return $this;
+    }
+
+    public function getNbrPlace(): ?int
+    {
+        return $this->nbrPlace;
+    }
+
+    public function setNbrPlace(int $nbrPlace): self
+    {
+        $this->nbrPlace = $nbrPlace;
+
+        return $this;
+    }
+
+    public function getIdClient(): ?User
     {
         return $this->idClient;
     }
 
-    public function setIdClient(int $idClient): self
+    public function setIdClient(?User $idClient): self
     {
         $this->idClient = $idClient;
 
         return $this;
     }
 
-    public function getNc(): ?int
+    public function getNc(): ?Circuit
     {
         return $this->nc;
     }
 
-    public function setNc(int $nc): self
+    public function setNc(?Circuit $nc): self
     {
         $this->nc = $nc;
-
-        return $this;
-    }
-
-    public function getDateDebutCircuit(): ?\DateTimeInterface
-    {
-        return $this->dateDebutCircuit;
-    }
-
-    public function setDateDebutCircuit(\DateTimeInterface $dateDebutCircuit): self
-    {
-        $this->dateDebutCircuit = $dateDebutCircuit;
-
-        return $this;
-    }
-
-    public function getNbrPlaces(): ?int
-    {
-        return $this->nbrPlaces;
-    }
-
-    public function setNbrPlaces(int $nbrPlaces): self
-    {
-        $this->nbrPlaces = $nbrPlaces;
 
         return $this;
     }

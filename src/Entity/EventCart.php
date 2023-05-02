@@ -29,7 +29,7 @@ class EventCart
     private $totalPrice;
 
     /**
-     * @var Evenement
+     * @var \Evenement
      *
      * @ORM\ManyToOne(targetEntity="Evenement")
      * @ORM\JoinColumns({
@@ -39,7 +39,7 @@ class EventCart
     private $event;
 
     /**
-     * @var Users
+     * @var \Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({

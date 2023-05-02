@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Etape
  *
- * @ORM\Table(name="etape", indexes={@ORM\Index(name="nc", columns={"nc"})})
+ * @ORM\Table(name="etape", indexes={@ORM\Index(name="ttytytyty", columns={"nc"}), @ORM\Index(name="tytytytytuuuu", columns={"nomVille"})})
  * @ORM\Entity
  */
 class Etape
@@ -24,20 +24,6 @@ class Etape
     /**
      * @var int
      *
-     * @ORM\Column(name="nc", type="integer", nullable=false)
-     */
-    private $nc;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ville", type="string", length=30, nullable=false)
-     */
-    private $ville;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="jr", type="integer", nullable=false)
      */
     private $jr;
@@ -45,37 +31,33 @@ class Etape
     /**
      * @var string
      *
-     * @ORM\Column(name="programme", type="string", length=2000, nullable=false)
+     * @ORM\Column(name="programme", type="string", length=250, nullable=false)
      */
     private $programme;
+
+    /**
+     * @var \Ville
+     *
+     * @ORM\ManyToOne(targetEntity="Ville")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nomVille", referencedColumnName="nomVille")
+     * })
+     */
+    private $nomville;
+
+    /**
+     * @var \Circuit
+     *
+     * @ORM\ManyToOne(targetEntity="Circuit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nc", referencedColumnName="nc")
+     * })
+     */
+    private $nc;
 
     public function getRang(): ?int
     {
         return $this->rang;
-    }
-
-    public function getNc(): ?int
-    {
-        return $this->nc;
-    }
-
-    public function setNc(int $nc): self
-    {
-        $this->nc = $nc;
-
-        return $this;
-    }
-
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
     }
 
     public function getJr(): ?int
@@ -98,6 +80,30 @@ class Etape
     public function setProgramme(string $programme): self
     {
         $this->programme = $programme;
+
+        return $this;
+    }
+
+    public function getNomville(): ?Ville
+    {
+        return $this->nomville;
+    }
+
+    public function setNomville(?Ville $nomville): self
+    {
+        $this->nomville = $nomville;
+
+        return $this;
+    }
+
+    public function getNc(): ?Circuit
+    {
+        return $this->nc;
+    }
+
+    public function setNc(?Circuit $nc): self
+    {
+        $this->nc = $nc;
 
         return $this;
     }

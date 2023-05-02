@@ -3,7 +3,7 @@
 {% block title %}New Reports{% endblock %}
 
 {% block body %}
-<h1>Create new Reports</h1>
+
 <div class="container-fluid py-5">
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Report Add</h1>
+            <h1>Add Report</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -40,6 +40,8 @@
             <div class="card-body"> 
  
               <div class="form-group">
+                </br>
+                </br>
                 
                    {{ include('Reports/_form.html.twig') }}
                              <a href="{{ path('app_reports_index') }}" class="btn btn-secondary float-right">Cancel</a>

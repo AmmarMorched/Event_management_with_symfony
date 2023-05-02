@@ -3,10 +3,11 @@
 {% block title %}Reports{% endblock %}
 
 {% block body %}
-    <h1>Reports</h1>
+    <div class="container-fluid py-5">
+
 
     <div
-		class="content-wrapper">
+		class="content-wrapper ">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<div class="container-fluid">
@@ -34,7 +35,9 @@
 					<div class="col-14">
 						<div class="card">
 							<div class="card-header">
+                                
                             <a href="{{ path('app_reports_new') }}" class="btn btn-secondary float-right">Add </a>
+                            {{ include('reports/_delete_form.html.twig') }}
 								<h3 class="card-title">Reports Table</h3>
 							</div>
 							<!-- /.card-header -->
@@ -75,14 +78,16 @@
             </tr>
         </tbody>
     </table>
+    <div>
+    <a href="{{ path('app_reports_index',{'reportId': report.reportId}) }}" class="btn btn-secondary">Cancel</a>
+          <a href="{{ path('app_reports_edit',{'reportId': report.reportId}) }}" class="btn btn-secondary float-right">Edit</a>
+          </div>
     </div>
 
     <div class="row">
-        <div class="col-12">
-          <a href="{{ path('app_reports_index',{'reportId': report.reportId}) }}" class="btn btn-secondary">Cancel</a>
-          <a href="{{ path('app_reports_edit',{'reportId': report.reportId}) }}" class="btn btn-secondary float-right">Edit</a>
         
-        </div>
+          
+        
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
@@ -95,12 +100,7 @@
 	</section>
 	<!-- /.content -->
 </div>
-
-    <a href="{{ path('app_reports_index') }}">back to list</a>
-
-    <a href="{{ path('app_reports_edit', {'reportId': report.reportId}) }}">edit</a>
-
-    {{ include('reports/_delete_form.html.twig') }}
+</div>
 
     <!-- jQuery -->
 <script src="{{ asset('../../plugins/jquery/jquery.min.js')}}"></script>

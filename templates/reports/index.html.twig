@@ -3,7 +3,9 @@
 {% block title %}Reports List{% endblock %}
 
 {% block body %}
-    <div
+        <div class="container-fluid py-5">
+
+	<div
 		class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -33,13 +35,15 @@
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title">Reports Table</h3>
+								<input type="string"  onkeyup="search()" class="form-control" id="search" >
+
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
 							
 
 
-    <table class="table" class="table table-bordered table-hover">
+    <table class="table" id="example1" class="table table-bordered table-hover">
         <thead>
             <tr>
                 {# <th>ReportId</th>  #}
@@ -95,7 +99,7 @@
 	<!-- /.content -->
 </div>
 
-    
+    </div>
 
 
 
@@ -121,33 +125,43 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('../../dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
-<script>
-	$(function () {
-$("#example1").DataTable({
-"responsive": true,
-"lengthChange": true,
-"autoWidth": true,
-"buttons": [
-"copy",
-"csv",
-"excel",
-"pdf",
-"print",
-"colvis"
-]
-}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-$('#example2').DataTable({
-"paging": false,
-"lengthChange": false,
-"searching": false,
-"ordering": true,
-"info": false,
-"autoWidth": false,
-"responsive": true
-}).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
-});
-</script>
 
+
+<script>
+function search()
+{
+var input, filter, table, tr, td, i, txtValue;
+input = document.getElementById("search").value ; 
+ $.ajax({
+        method: "GET",
+        url: "{{ path('app_reports_search') }}",
+        data: {search: input},
+        success: function(response){
+            console.log(response);   
+            $('#example1 tbody').empty();
+            if (response.length === 0) {
+          var messageRow = $('<tr>').append($('<td colspan="3">').text('No results found.'));
+          $('#example1 tbody').append(messageRow);
+          
+        } else {
+          // Add search results to table
+           $.each(response, function(index, reports) {
+           
+            var row = $('<tr>');
+            row.append($('<td>').text(reports.reportSubject));
+        
+            row.append($('<td>').text(reports.reportId));
+            row.append($('<td>').text(reports.reportSubject));
+            row.append($('<td>').text(reports.involvment));
+            row.append($('<td>').text(reports.incidentLocation));
+            $('#example1 tbody').append(row);
+          });
+        }
+		
+        }
+    });}
+	
+    </script>
 
 
 {% endblock %}

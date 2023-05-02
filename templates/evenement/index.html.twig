@@ -4,26 +4,25 @@
 
 {% block body %}
 </br>
+
+{# <input   onkeyup="search()" class="form-control" id="search" > #}
 </br>
 </br>
-<div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Events</h6>
-                <h1>Explore Top Events</h1>
-            </div>
+<div class="container py-5">
 
-
- {% for evenement in evenements %}
-<div class="container-fluid py-5">
 <div class="container-pt-5 pb-3">
- <div class="row">
+ <div class="row" id="event-container">
+ {% for evenement in evenements %}
+
  <div class="col-lg-4 col-md-6 mb-4">
+
                     <div class="package-item bg-white mb-2">
                         <img class="img-fluid" src="{{ asset('/uploads/img/' ~ evenement.eventposter) }}"alt="">
                         <div class="p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i><td>{{ evenement.cityname }}</td></small>
                                 <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{ evenement.startDate ? evenement.startDate|date('d-m-Y') : '' }}</small>
-                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small id="nb-{{evenement.eventId}}">25</small></h6>
 
                                 
                                 
@@ -33,8 +32,9 @@
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="m-0 float-right">{{ evenement.eventprice }}  DT</h5>
-                                    
+                                    <input type="button" value="like"  data-id="{{evenement.eventId}}" onclick="like(this)">
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -46,16 +46,96 @@
                                               <td colspan="9">no records found</td>
                                            </tr>
                                      {% endfor %}
-                                 </tbody>
+                                 
 </div>
 </div>
 </div>
+
+
+
+
+
+<script>
+    // Wait for the DOM to be ready
+ function search()
+ {
+    input = document.getElementById("search").value ; 
+
+     $.ajax({
+                type: 'GET',
+                url: '', // Change this to the URL of your search endpoint
+                data: {
+                    search:input // Pass the user input as a query parameter
+                },
+                success: function(response) {
+                    // Clear the event container
+                    $('#event-container').empty();
+                    // Loop through the search results and append them to the container
+                    for (var i = 0; i < response.length; i++) {
+                        var evenement = response[i];
+                        var html = '<div class="col-lg-4 col-md-6 mb-4">';
+                        html += '<div class="package-item bg-white mb-2">';
+                        html += '<img class="img-fluid" src="{{ asset('/Uploads/img/') }}' + evenement.eventposter + '" alt="">';
+                        html += '<div class="p-4">';
+                        html += '<div class="d-flex justify-content-between mb-3">';
+                        html += '<small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i><td>' + evenement.cityname + '</td></small>';
+                        html += '<small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>' + (evenement.startDate ? evenement.startDate : '') + '</small>';
+                        html += '<h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>';
+                        html += '</div>';
+                        html += '<div class="border-top mt-4 pt-4">';
+                        html += '<div class="d-flex justify-content-between">';
+                        html += '<h5 class="m-0 float-right">' + evenement.eventprice + ' DT</h5>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        $('#event-container').append(html);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error:', error);
+                }
+            });
+ }
+ function like(b){
+    console.log(b);
+    id=b.getAttribute("data-id")
+    console.log(("nb-"+id))
+
+    if(b.value=="like")
+    {
+         $.ajax({
+                type: 'post',
+                url: '/like',                 // '/like/'+id+'/2' 
+
+                data: {
+                },
+                success: function(response) {
+
+                b.value="dislike"
+                a=document.getElementById("nb-"+id).innerHTML=Number(document.getElementById("nb-"+id).innerHTML)+1;
+                }
+
+ })}else{
+      $.ajax({
+                type: 'post',
+                // '/dislike/'+id+'/2' 
+                url: '/like', 
+                data: {
+                },
+                success: function(response) {
+
+                b.value="like"
+                a=document.getElementById("nb-"+id).innerHTML=Number(document.getElementById("nb-"+id).innerHTML)-1;
+                }
+
+ })
+ }
+    }
+            </script>
+
 {% endblock %}
-
-
-
-
-
 
 
 

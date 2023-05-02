@@ -9768,12 +9768,10 @@ h6,
   padding: 0;
   list-style-type: none;
 }
-a {
-  background: red;
-}
+
 :root {
 
-  --theadColor: #eb3461;
+  --theadColor: #7ab730;
 
 }
 
@@ -9949,8 +9947,13 @@ tbody tr:hover {
 
   border-radius: 50px !important;
 
-  background-color: #000 !important;
+  background-color: #b7b340 !important;
 
   color: #fff !important;
 
+}
+.dataTables_filter {
+  width: 50%;
+  float: right;
+  text-align: right;
 }

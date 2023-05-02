@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta charset="utf-8">
     <title>{% block title %}RoadRevel{% endblock %}</title>
@@ -6,8 +7,8 @@
     <meta content="Free HTML Templates" name="description">
     {% block css %}
         <link href="{{ asset('front/customStyle.css') }}"
-        <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+        <link href="{{ asset('https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css') }}">
         <!-- Favicon -->
         <link href="{{ asset('front/img/favicon.ico') }}" rel="icon">
 

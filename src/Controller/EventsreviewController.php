@@ -30,21 +30,38 @@ class EventsreviewController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_eventsreview_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{eventId}', name: 'app_eventsreview_new', methods: ['GET', 'POST'])]
+    public function new($eventId,Request $request, EntityManagerInterface $entityManager): Response
     {
-       
+
+       $event = $entityManager
+            ->getRepository(Evenement::class)
+            ->find($eventId);
         $eventsreview = new Eventsreview();
+        $eventsreview->setEvent($event);
+
         $form = $this->createForm(EventsreviewType::class, $eventsreview);
         $form->handleRequest($request);
         
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event = $form->get('event')->getData();
-            $entityManager->persist($eventsreview);
-            $entityManager->flush();
+            $badwords = array("fuck" , "shit" , "ficken" );
+            $re = '/\b('.implode('|', $badwords).')\b/';
+            $str= $eventsreview->getReviewTxt();
+            if( preg_match($re,$str) ==1 )
+           { $eventsreview->setEventName("lljlkjlkj");
+      
 
-            return $this->redirectToRoute('app_eventsreview_index', [], Response::HTTP_SEE_OTHER);
+        } 
+  
+        $eventsreview->setReviewTxt(    preg_replace($re, '*******', $str));
+          $this->addFlash(
+            'notice', 'Your review text contain a bad word.carefull don\'t use it again or you will get banned'
+        );
+        $entityManager->persist($eventsreview);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_evenement_show', ['eventId'=>$eventId]);
+
         }
 
         return $this->renderForm('eventsreview/new.html.twig', [

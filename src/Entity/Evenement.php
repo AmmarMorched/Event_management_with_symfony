@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Evenement
@@ -26,28 +24,28 @@ class Evenement
 
     /**
      * @var string
-     *@Assert\NotBlank(message=" Please enter an Event Name")
+     *
      * @ORM\Column(name="Event_name", type="string", length=30, nullable=false)
      */
     private $eventName;
 
     /**
      * @var string
-     *@Assert\NotBlank(message=" Please enter a City Name")
+     *
      * @ORM\Column(name="CityName", type="string", length=30, nullable=false)
      */
     private $cityname;
 
     /**
      * @var string
-     *@Assert\NotBlank(message=" Please enter Description")
+     *
      * @ORM\Column(name="Event_description", type="text", length=65535, nullable=false)
      */
     private $eventDescription;
 
     /**
      * @var int
-     *@Assert\NotBlank(message=" Please enter the price")
+     *
      * @ORM\Column(name="EventPrice", type="integer", nullable=false)
      */
     private $eventprice;
@@ -203,9 +201,6 @@ class Evenement
     public function __toString(): string
     {
         return $this->getEventName();
-    }
-
-    
-
+    } 
 
 }

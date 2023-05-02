@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Planningcircuit
  *
- * @ORM\Table(name="planningcircuit")
+ * @ORM\Table(name="planningcircuit", indexes={@ORM\Index(name="zerezrezr", columns={"nc"})})
  * @ORM\Entity
  */
 class Planningcircuit
@@ -16,51 +16,73 @@ class Planningcircuit
     /**
      * @var int
      *
-     * @ORM\Column(name="nc", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $nc;
+    private $id;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDebut", type="date", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="datedébut", type="date", nullable=false)
      */
-    private $datedebut;
+    private $datedébut;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="capacite", type="integer", nullable=false)
+     * @ORM\Column(name="capacité", type="integer", nullable=false)
      */
-    private $capacite;
+    private $capacité;
 
-    public function getNc(): ?int
+    /**
+     * @var \Circuit
+     *
+     * @ORM\ManyToOne(targetEntity="Circuit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nc", referencedColumnName="nc")
+     * })
+     */
+    private $nc;
+
+    public function getId(): ?int
     {
-        return $this->nc;
+        return $this->id;
     }
 
-    public function setNc(int $nc): self
+    public function getDatedébut(): ?\DateTimeInterface
     {
-        $this->nc = $nc;
+        return $this->datedébut;
+    }
+
+    public function setDatedébut(\DateTimeInterface $datedébut): self
+    {
+        $this->datedébut = $datedébut;
 
         return $this;
     }
 
-    public function getDatedebut(): ?\DateTimeInterface
+    public function getCapacité(): ?int
     {
-        return $this->datedebut;
+        return $this->capacité;
     }
 
-    public function getCapacite(): ?int
+    public function setCapacité(int $capacité): self
     {
-        return $this->capacite;
+        $this->capacité = $capacité;
+
+        return $this;
     }
 
-    public function setCapacite(int $capacite): self
+    public function getNc(): ?Circuit
     {
-        $this->capacite = $capacite;
+        return $this->nc;
+    }
+
+    public function setNc(?Circuit $nc): self
+    {
+        $this->nc = $nc;
 
         return $this;
     }
