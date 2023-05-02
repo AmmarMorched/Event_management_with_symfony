@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventCart index{% endblock %}
+
+{% block body %}
+    <h1>EventCart index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>CartId</th>
+                <th>TotalPrice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event_cart in event_carts %}
+            <tr>
+                <td>{{ event_cart.cartId }}</td>
+                <td>{{ event_cart.totalPrice }}</td>
+                <td>
+                    <a href="{{ path('app_event_cart_show', {'cartId': event_cart.cartId}) }}">show</a>
+                    <a href="{{ path('app_event_cart_edit', {'cartId': event_cart.cartId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_cart_new') }}">Create new</a>
+{% endblock %}

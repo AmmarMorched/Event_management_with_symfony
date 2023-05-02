@@ -1,0 +1,61 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Evenement List{% endblock %}
+
+{% block body %}
+</br>
+</br>
+</br>
+<div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Events</h6>
+                <h1>Explore Top Events</h1>
+            </div>
+
+
+ {% for evenement in evenements %}
+<div class="container-fluid py-5">
+<div class="container-pt-5 pb-3">
+ <div class="row">
+ <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="{{ asset('/uploads/img/' ~ evenement.eventposter) }}"alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i><td>{{ evenement.cityname }}</td></small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{ evenement.startDate ? evenement.startDate|date('d-m-Y') : '' }}</small>
+                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+
+                                
+                                
+                                
+                            </div>
+                            <a class="h5 text-decoration-none" href="{{ path('app_evenement_show', {'eventId': evenement.eventId}) }}">{{ evenement.eventName }}</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="m-0 float-right">{{ evenement.eventprice }}  DT</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% else %}
+                                          <tr>
+                                              <td colspan="9">no records found</td>
+                                           </tr>
+                                     {% endfor %}
+                                 </tbody>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+

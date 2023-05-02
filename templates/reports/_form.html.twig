@@ -1,0 +1,50 @@
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label"> Report Subject </label>
+     {{ form_widget(form.reportSubject,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.reportSubject,{'attr':{'class':'text-danger'}}) }}
+</br>
+<div>
+<label for="inputText" class="col-sm-4 col-form-label">Report Description</label>
+     {{ form_widget(form.reportDescription,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.reportDescription,{'attr':{'class':'text-danger'}}) }}
+    </br>
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">Involvment</label>
+     {{ form_widget(form.involvment,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.involvment,{'attr':{'class':'text-danger'}}) }}
+    </br>
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">Incident Type</label>
+     {{ form_widget(form.incidentType,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.incidentType,{'attr':{'class':'text-danger'}}) }}
+    </br>
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">IncidentDate</label>
+     {{ form_widget(form.incidentDate,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.incidentDate,{'attr':{'class':'text-danger'}}) }}
+    </br>
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">Incident Location</label>
+     {{ form_widget(form.incidentLocation,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.incidentLocation,{'attr':{'class':'text-danger'}}) }}
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }} </button>
+
+
+
+
+{{ form_end(form) }}

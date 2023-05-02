@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Circuit{% endblock %}
+
+{% block body %}
+    <h1>Circuit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nc</th>
+                <td>{{ circuit.nc }}</td>
+            </tr>
+            <tr>
+                <th>Vdep</th>
+                <td>{{ circuit.vdep }}</td>
+            </tr>
+            <tr>
+                <th>Varr</th>
+                <td>{{ circuit.varr }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ circuit.prix }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ circuit.duree }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ circuit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ circuit.description }}</td>
+            </tr>
+            <tr>
+                <th>Imagesrc</th>
+                <td>{{ circuit.imagesrc }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_circuit_index') }}">back to list</a>
+
+    <a href="{{ path('app_circuit_edit', {'nc': circuit.nc}) }}">edit</a>
+
+    {{ include('circuit/_delete_form.html.twig') }}
+{% endblock %}

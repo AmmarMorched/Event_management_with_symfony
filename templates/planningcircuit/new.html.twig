@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Planningcircuit{% endblock %}
+
+{% block body %}
+    <h1>Create new Planningcircuit</h1>
+
+    {{ include('planningcircuit/_form.html.twig') }}
+
+    <a href="{{ path('app_planningcircuit_index') }}">back to list</a>
+{% endblock %}

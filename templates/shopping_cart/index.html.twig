@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShoppingCart index{% endblock %}
+
+{% block body %}
+    <h1>ShoppingCart index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCart</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shopping_cart in shopping_carts %}
+            <tr>
+                <td>{{ shopping_cart.idCart }}</td>
+                <td>{{ shopping_cart.price }}</td>
+                <td>{{ shopping_cart.quantity }}</td>
+                <td>
+                    <a href="{{ path('app_shopping_cart_show', {'idCart': shopping_cart.idCart}) }}">show</a>
+                    <a href="{{ path('app_shopping_cart_edit', {'idCart': shopping_cart.idCart}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_shopping_cart_new') }}">Create new</a>
+{% endblock %}

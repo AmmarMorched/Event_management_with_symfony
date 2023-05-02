@@ -1,0 +1,176 @@
+{% extends 'basefront.html.twig' %}
+
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid py-5">
+    
+
+    <div
+		class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Events</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">Home</a>
+							</li>
+							<li class="breadcrumb-item active">DataTables</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-14">
+						<div class="card">
+							<div class="card-header">
+                            <a href="{{ path('app_evenement_edit',{'eventId': evenement.eventId}) }}" class="btn btn-secondary float-right ">Edit</a>
+                            
+								<h3 class="card-title">About this event</h3>
+<br \> 
+                                                            <a href="#">Like</a>(15)
+
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>EventName</th>
+                <td>{{ evenement.eventName }}</td>
+            </tr>
+            <tr>
+                <th>Cityname</th>
+                <td>{{ evenement.cityname }}</td>
+            </tr>
+            <tr>
+                <th>EventDescription</th>
+                <td>{{ evenement.eventDescription }}</td>
+            </tr>
+            <tr>
+                <th>Eventprice</th>
+                <td>{{ evenement.eventprice }}</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>StartDate</th>
+                <td>{{ evenement.startDate ? evenement.startDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDate</th>
+                <td>{{ evenement.endDate ? evenement.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Eventposter</th>
+                {# <td>{{ evenement.eventposter }}</td> #}
+                
+				<td><img src="{{ asset('/uploads/img/' ~ evenement.eventposter) }}" style="width: 40%; height: auto;"></td>
+            
+            <tr>
+                <th>EventPic2</th>
+                {# <td>{{ evenement.eventPic2 }}</td> #}
+                <td><img src="{{ asset('/uploads/img/' ~ evenement.eventPic2) }}" style="width: 40%; height: auto;"></td>
+            </tr>
+            <tr>
+                <th>EventPic3</th>
+                {# <td>{{ evenement.eventPic3 }}</td> #}
+                <td><img src="{{ asset('/uploads/img/' ~ evenement.eventPic3) }}" style="width: 40%; height: auto;"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-12">
+         
+          
+          <a href="{{ path('app_eventsreview_new', {'eventId': evenement.eventId}) }}"class="btn btn-secondary float-right">comment</a>
+            <a href="{{ path('app_evenement_index',{'eventId': evenement.eventId}) }}" class="btn btn-secondary">Cancel</a>
+            
+        
+		
+          
+        </div>
+    </div>
+    
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+            
+		<!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+</div>
+
+    </div>
+
+    
+    
+
+    
+    {{ include('evenement/_delete_form.html.twig') }}
+      <!-- jQuery -->
+<script src="{{ asset('../../plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('../../plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('../../plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../../plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{ asset('../../plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{ asset('../../plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('../../plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('../../dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('../../dist/js/demo.js')}}"></script>
+<!-- Page specific script -->
+<script>
+	$(function () {
+$("#example1").DataTable({
+"responsive": true,
+"lengthChange": true,
+"autoWidth": true,
+"buttons": [
+"copy",
+"csv",
+"excel",
+"pdf",
+"print",
+"colvis"
+]
+}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+$('#example2').DataTable({
+"paging": false,
+"lengthChange": false,
+"searching": false,
+"ordering": true,
+"info": false,
+"autoWidth": false,
+"responsive": true
+}).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+});
+</script>
+{% endblock %}

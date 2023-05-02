@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Placetovisit{% endblock %}
+
+{% block body %}
+    <h1>Placetovisit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>PlaceId</th>
+                <td>{{ placetovisit.placeId }}</td>
+            </tr>
+            <tr>
+                <th>PlaceName</th>
+                <td>{{ placetovisit.placeName }}</td>
+            </tr>
+            <tr>
+                <th>Cityname</th>
+                <td>{{ placetovisit.cityname }}</td>
+            </tr>
+            <tr>
+                <th>PlaceType</th>
+                <td>{{ placetovisit.placeType }}</td>
+            </tr>
+            <tr>
+                <th>PlaceDescription</th>
+                <td>{{ placetovisit.placeDescription }}</td>
+            </tr>
+            <tr>
+                <th>PlaceAddress</th>
+                <td>{{ placetovisit.placeAddress }}</td>
+            </tr>
+            <tr>
+                <th>TicketsPrice</th>
+                <td>{{ placetovisit.ticketsPrice }}</td>
+            </tr>
+            <tr>
+                <th>PlaceImg</th>
+                <td>{{ placetovisit.placeImg }}</td>
+            </tr>
+            <tr>
+                <th>PlaceImg2</th>
+                <td>{{ placetovisit.placeImg2 }}</td>
+            </tr>
+            <tr>
+                <th>PlaceImg3</th>
+                <td>{{ placetovisit.placeImg3 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_placetovisit_index') }}">back to list</a>
+
+    <a href="{{ path('app_placetovisit_edit', {'placeId': placetovisit.placeId}) }}">edit</a>
+
+    {{ include('placetovisit/_delete_form.html.twig') }}
+{% endblock %}

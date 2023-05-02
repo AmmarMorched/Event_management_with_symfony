@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdUser</th>
+                <th>UserFirstname</th>
+                <th>UserLastname</th>
+                <th>UserMail</th>
+                <th>UserPhone</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Lang1</th>
+                <th>Lang2</th>
+                <th>Lang3</th>
+                <th>Cityname</th>
+                <th>Nationality</th>
+                <th>Langue</th>
+                <th>Datebeg</th>
+                <th>Dateend</th>
+                <th>Disponibility</th>
+                <th>IdRelation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.idUser }}</td>
+                <td>{{ user.userFirstname }}</td>
+                <td>{{ user.userLastname }}</td>
+                <td>{{ user.userMail }}</td>
+                <td>{{ user.userPhone }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.lang1 }}</td>
+                <td>{{ user.lang2 }}</td>
+                <td>{{ user.lang3 }}</td>
+                <td>{{ user.cityname }}</td>
+                <td>{{ user.nationality }}</td>
+                <td>{{ user.langue }}</td>
+                <td>{{ user.datebeg ? user.datebeg|date('Y-m-d') : '' }}</td>
+                <td>{{ user.dateend ? user.dateend|date('Y-m-d') : '' }}</td>
+                <td>{{ user.disponibility ? 'Yes' : 'No' }}</td>
+                <td>{{ user.idRelation }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'idUser': user.idUser}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'idUser': user.idUser}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

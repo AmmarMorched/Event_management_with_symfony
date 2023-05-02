@@ -1,0 +1,23 @@
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+   
+    <divclass="form-group">
+    <label for="inputText" class="col-sm-4 col-form-label">Event Name</label>
+     {{ form_widget(form.event,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.event,{'attr':{'class':'text-danger'}}) }} 
+    <div class="form-group">
+    <label for="inputText" class="col-sm-4 col-form-label">Review TXT</label>
+     {{ form_widget(form.reviewTxt,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.reviewTxt,{'attr':{'class':'text-danger'}}) }}
+
+<label for="inputText" class="col-sm-4 col-form-label">id User</label>
+     {{ form_widget(form.idUser,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.idUser,{'attr':{'class':'text-danger'}}) }}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

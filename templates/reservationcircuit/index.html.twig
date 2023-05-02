@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservationcircuit index{% endblock %}
+
+{% block body %}
+    <h1>Reservationcircuit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NumRes</th>
+                <th>IdClient</th>
+                <th>Nc</th>
+                <th>DateDebutCircuit</th>
+                <th>NbrPlaces</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservationcircuit in reservationcircuits %}
+            <tr>
+                <td>{{ reservationcircuit.numRes }}</td>
+                <td>{{ reservationcircuit.idClient }}</td>
+                <td>{{ reservationcircuit.nc }}</td>
+                <td>{{ reservationcircuit.dateDebutCircuit ? reservationcircuit.dateDebutCircuit|date('Y-m-d') : '' }}</td>
+                <td>{{ reservationcircuit.nbrPlaces }}</td>
+                <td>
+                    <a href="{{ path('app_reservationcircuit_show', {'numRes': reservationcircuit.numRes}) }}">show</a>
+                    <a href="{{ path('app_reservationcircuit_edit', {'numRes': reservationcircuit.numRes}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservationcircuit_new') }}">Create new</a>
+{% endblock %}

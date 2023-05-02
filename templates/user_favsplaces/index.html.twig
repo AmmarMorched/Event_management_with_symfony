@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserFavsplaces index{% endblock %}
+
+{% block body %}
+    <h1>UserFavsplaces index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdFavs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_favsplace in user_favsplaces %}
+            <tr>
+                <td>{{ user_favsplace.idFavs }}</td>
+                <td>
+                    <a href="{{ path('app_user_favsplaces_show', {'idFavs': user_favsplace.idFavs}) }}">show</a>
+                    <a href="{{ path('app_user_favsplaces_edit', {'idFavs': user_favsplace.idFavs}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_favsplaces_new') }}">Create new</a>
+{% endblock %}

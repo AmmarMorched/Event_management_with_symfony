@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etape{% endblock %}
+
+{% block body %}
+    <h1>Etape</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Rang</th>
+                <td>{{ etape.rang }}</td>
+            </tr>
+            <tr>
+                <th>Nc</th>
+                <td>{{ etape.nc }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ etape.ville }}</td>
+            </tr>
+            <tr>
+                <th>Jr</th>
+                <td>{{ etape.jr }}</td>
+            </tr>
+            <tr>
+                <th>Programme</th>
+                <td>{{ etape.programme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etape_index') }}">back to list</a>
+
+    <a href="{{ path('app_etape_edit', {'rang': etape.rang}) }}">edit</a>
+
+    {{ include('etape/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Circuit index{% endblock %}
+
+{% block body %}
+    <h1>Circuit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nc</th>
+                <th>Vdep</th>
+                <th>Varr</th>
+                <th>Prix</th>
+                <th>Duree</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Imagesrc</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circuit in circuits %}
+            <tr>
+                <td>{{ circuit.nc }}</td>
+                <td>{{ circuit.vdep }}</td>
+                <td>{{ circuit.varr }}</td>
+                <td>{{ circuit.prix }}</td>
+                <td>{{ circuit.duree }}</td>
+                <td>{{ circuit.nom }}</td>
+                <td>{{ circuit.description }}</td>
+                <td>{{ circuit.imagesrc }}</td>
+                <td>
+                    <a href="{{ path('app_circuit_show', {'nc': circuit.nc}) }}">show</a>
+                    <a href="{{ path('app_circuit_edit', {'nc': circuit.nc}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_circuit_new') }}">Create new</a>
+{% endblock %}

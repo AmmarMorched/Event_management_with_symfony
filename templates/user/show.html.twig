@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdUser</th>
+                <td>{{ user.idUser }}</td>
+            </tr>
+            <tr>
+                <th>UserFirstname</th>
+                <td>{{ user.userFirstname }}</td>
+            </tr>
+            <tr>
+                <th>UserLastname</th>
+                <td>{{ user.userLastname }}</td>
+            </tr>
+            <tr>
+                <th>UserMail</th>
+                <td>{{ user.userMail }}</td>
+            </tr>
+            <tr>
+                <th>UserPhone</th>
+                <td>{{ user.userPhone }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th>Lang1</th>
+                <td>{{ user.lang1 }}</td>
+            </tr>
+            <tr>
+                <th>Lang2</th>
+                <td>{{ user.lang2 }}</td>
+            </tr>
+            <tr>
+                <th>Lang3</th>
+                <td>{{ user.lang3 }}</td>
+            </tr>
+            <tr>
+                <th>Cityname</th>
+                <td>{{ user.cityname }}</td>
+            </tr>
+            <tr>
+                <th>Nationality</th>
+                <td>{{ user.nationality }}</td>
+            </tr>
+            <tr>
+                <th>Langue</th>
+                <td>{{ user.langue }}</td>
+            </tr>
+            <tr>
+                <th>Datebeg</th>
+                <td>{{ user.datebeg ? user.datebeg|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Dateend</th>
+                <td>{{ user.dateend ? user.dateend|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Disponibility</th>
+                <td>{{ user.disponibility ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IdRelation</th>
+                <td>{{ user.idRelation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_edit', {'idUser': user.idUser}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

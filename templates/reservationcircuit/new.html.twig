@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservationcircuit{% endblock %}
+
+{% block body %}
+    <h1>Create new Reservationcircuit</h1>
+
+    {{ include('reservationcircuit/_form.html.twig') }}
+
+    <a href="{{ path('app_reservationcircuit_index') }}">back to list</a>
+{% endblock %}

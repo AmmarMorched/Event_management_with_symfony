@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlaceReviews index{% endblock %}
+
+{% block body %}
+    <h1>PlaceReviews index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ReviewId</th>
+                <th>PlaceName</th>
+                <th>Rating</th>
+                <th>ReviewTxt</th>
+                <th>ReviewDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for place_review in place_reviews %}
+            <tr>
+                <td>{{ place_review.reviewId }}</td>
+                <td>{{ place_review.placeName }}</td>
+                <td>{{ place_review.rating }}</td>
+                <td>{{ place_review.reviewTxt }}</td>
+                <td>{{ place_review.reviewDate ? place_review.reviewDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_place_reviews_show', {'reviewId': place_review.reviewId}) }}">show</a>
+                    <a href="{{ path('app_place_reviews_edit', {'reviewId': place_review.reviewId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_place_reviews_new') }}">Create new</a>
+{% endblock %}

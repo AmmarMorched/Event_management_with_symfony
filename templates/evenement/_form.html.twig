@@ -1,0 +1,68 @@
+
+
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label"> Event Name </label>
+     {{ form_widget(form.eventName,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventName,{'attr':{'class':'text-danger'}}) }}
+<div>
+<label for="inputText" class="col-sm-4 col-form-label">City Name</label>
+     {{ form_widget(form.cityname,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.cityname,{'attr':{'class':'text-danger'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">Event Description</label>
+     {{ form_widget(form.eventDescription,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventDescription,{'attr':{'class':'text-danger'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">Event Price </label>
+     {{ form_widget(form.eventprice,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventprice,{'attr':{'class':'text-danger'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">start Date</label>
+     {{ form_widget(form.startDate,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.startDate,{'attr':{'class':'text-danger'}}) }}
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">End Date</label>
+     {{ form_widget(form.endDate,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.endDate,{'attr':{'class':'text-danger'}}) }}
+
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">eventposter</label>
+     {{ form_widget(form.eventposter,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventposter,{'attr':{'class':'text-danger'}}) }}
+
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">eventPic2</label>
+     {{ form_widget(form.eventPic2,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventPic2,{'attr':{'class':'text-danger'}}) }}
+
+    <div>
+    <label for="inputText" class="col-sm-4 col-form-label">event Pic3</label>
+     {{ form_widget(form.eventPic3,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    {{ form_errors(form.eventPic3,{'attr':{'class':'text-danger'}}) }}
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }} </button>
+
+
+
+
+{{ form_end(form) }}

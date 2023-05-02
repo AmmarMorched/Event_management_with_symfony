@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Placetovisit{% endblock %}
+
+{% block body %}
+    <h1>Create new Placetovisit</h1>
+
+    {{ include('placetovisit/_form.html.twig') }}
+
+    <a href="{{ path('app_placetovisit_index') }}">back to list</a>
+{% endblock %}

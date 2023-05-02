@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planningcircuit index{% endblock %}
+
+{% block body %}
+    <h1>Planningcircuit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nc</th>
+                <th>Datedebut</th>
+                <th>Capacite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planningcircuit in planningcircuits %}
+            <tr>
+                <td>{{ planningcircuit.nc }}</td>
+                <td>{{ planningcircuit.datedebut ? planningcircuit.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ planningcircuit.capacite }}</td>
+                <td>
+                    <a href="{{ path('app_planningcircuit_show', {'datedebut': planningcircuit.datedebut}) }}">show</a>
+                    <a href="{{ path('app_planningcircuit_edit', {'datedebut': planningcircuit.datedebut}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planningcircuit_new') }}">Create new</a>
+{% endblock %}
